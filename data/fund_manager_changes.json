@@ -1,0 +1,18 @@
+[
+    {
+        "fundId": 4,
+        "fundName": "Axis Midcap Fund",
+        "previousManager": "Shreyash Devalkar",
+        "newManager": "Ashish Naik",
+        "changeDate": "2023-10-01",
+        "reason": "Resignation"
+    },
+    {
+        "fundId": 15,
+        "fundName": "DSP Midcap Fund",
+        "previousManager": "Vinit Sambre",
+        "newManager": "Resham Jain",
+        "changeDate": "2023-11-15",
+        "reason": "Internal Rotation"
+    }
+]

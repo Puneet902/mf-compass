@@ -1,0 +1,97 @@
+{
+    "name": "MF Compass Agentic Workflow",
+    "nodes": [
+        {
+            "parameters": {
+                "path": "analyze",
+                "responseMode": "lastNode",
+                "options": {}
+            },
+            "name": "Webhook",
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 1,
+            "position": [
+                100,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "functionCode": "// Read Mutual Funds Data\nconst funds = items[0].json.body.funds || [];\nreturn { json: { funds } };"
+            },
+            "name": "Read Data",
+            "type": "n8n-nodes-base.function",
+            "typeVersion": 1,
+            "position": [
+                300,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "functionCode": "// Ranking Logic\nconst funds = items[0].json.funds;\nfunds.forEach(f => {\n  f.score = f.rollingReturnScore*0.4 + f.consistencyScore*0.3 + (1/f.volatility)*0.2 + (1/f.expenseRatio)*0.1;\n});\nreturn { json: { rankedFunds: funds.sort((a,b) => b.score - a.score) } };"
+            },
+            "name": "Ranking Engine",
+            "type": "n8n-nodes-base.function",
+            "typeVersion": 1,
+            "position": [
+                500,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "modelId": "gpt-4o",
+                "prompt": "Analyze the user profile and ranked funds to provide recommendations.",
+                "messages": [
+                    {
+                        "role": "system",
+                        "content": "You are MF Compass Agent..."
+                    }
+                ]
+            },
+            "name": "LLM Reasoning",
+            "type": "@n8n/n8n-nodes-langchain.chainLlm",
+            "typeVersion": 1,
+            "position": [
+                700,
+                300
+            ]
+        }
+    ],
+    "connections": {
+        "Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "Read Data",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Read Data": {
+            "main": [
+                [
+                    {
+                        "node": "Ranking Engine",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Ranking Engine": {
+            "main": [
+                [
+                    {
+                        "node": "LLM Reasoning",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "userId": "user_123",
+    "holdings": [
+        {
+            "fundId": 1,
+            "units": 150.5,
+            "averagePrice": 120.0,
+            "currentValue": 19565.0,
+            "investedAmount": 18060.0
+        },
+        {
+            "fundId": 4,
+            "units": 80.0,
+            "averagePrice": 55.0,
+            "currentValue": 4800.0,
+            "investedAmount": 4400.0
+        }
+    ],
+    "sip": [
+        {
+            "fundId": 1,
+            "amount": 5000,
+            "startDate": "2023-01-15"
+        },
+        {
+            "fundId": 3,
+            "amount": 2000,
+            "startDate": "2023-06-10"
+        }
+    ]
+}
