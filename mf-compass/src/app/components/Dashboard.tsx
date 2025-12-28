@@ -191,7 +191,7 @@ export default function Dashboard() {
             {recommendation && (
                 <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 sm:p-6 rounded-xl border border-blue-100">
                     <h3 className="text-base sm:text-lg font-semibold text-blue-900 mb-3 sm:mb-4 flex items-center gap-2">
-                        <Shield className="w-4 h-4 sm:w-5 sm:h-5" /> Suggested Moves (Agentic AI)
+                        <Shield className="w-4 h-4 sm:w-5 sm:h-5" /> Suggested Moves 
                     </h3>
 
                     <div>
